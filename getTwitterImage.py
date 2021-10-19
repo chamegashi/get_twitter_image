@@ -1,6 +1,8 @@
 import json, config
+# from typing import 
 from requests_oauthlib import OAuth1Session
-import urllib
+
+from TwitterImageFormat import TwitterImage
 
 AK = config.API_KEY
 AS = config.API_SECRET_KEY
@@ -9,7 +11,6 @@ ATS = config.ACCESS_TOKEN_SECRET
 twitter = OAuth1Session(AK, AS, AT, ATS) #認証処理
 
 # ---- フォロー取得
-
 def get_follow():
 
     url = "https://api.twitter.com/1.1/friends/list.json"
@@ -70,12 +71,14 @@ def get_images(users):
 
                         tweet_url = tweet['entities']['media'][0]['expanded_url'][0:-8]
                         print(json.loads(tweet_url))
-                        check_image.append({
-                            "image_url": image_url,
-                            "tweet_url": tweet_url,
-                            "text": tweet["text"],
-                            "created": tweet["created_at"]
-                            })
+                        check_image.append(
+                            TwitterImage(
+                                image_url,
+                                tweet_url,
+                                tweet["text"],
+                                tweet["created_at"]
+                            )
+                        )
 
                     continue
 
@@ -92,7 +95,14 @@ def get_images(users):
                             continue
 
                         tweet_url = tweet['entities']['media'][0]['expanded_url'][0:-8]
-                        check_image.append(image_url)
+                        check_image.append(
+                            TwitterImage(
+                                image_url,
+                                tweet_url,
+                                tweet["text"],
+                                tweet["created_at"]
+                            )
+                        )
             
             ret_image_urls.append(check_image)
 
@@ -100,8 +110,6 @@ def get_images(users):
             print("Failed: %d" % res.status_code)
     
     return ret_image_urls
-        
-
 
 
 if __name__ == '__main__':
