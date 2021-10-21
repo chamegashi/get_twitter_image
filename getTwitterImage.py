@@ -30,6 +30,7 @@ def get_follow():
 
 # ---- user 情報取得
 def get_user_from_user_name(user_name):
+    print(user_name)
     url = "https://api.twitter.com/1.1/users/lookup.json?screen_name=" + user_name
     res = twitter.get(url)
     data = json.loads(res.text)[0]
