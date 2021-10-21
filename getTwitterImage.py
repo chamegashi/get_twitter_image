@@ -30,7 +30,6 @@ def get_follow():
 
 # ---- user 情報取得
 def get_user_from_user_name(user_name):
-    print(user_name)
     url = "https://api.twitter.com/1.1/users/lookup.json?screen_name=" + user_name
     res = twitter.get(url)
     data = json.loads(res.text)[0]
@@ -71,13 +70,13 @@ def get_images(users):
                             continue
 
                         tweet_url = tweet['entities']['media'][0]['expanded_url'][0:-8]
-                        print(json.loads(tweet_url))
                         check_image.append(
                             TwitterImage(
                                 image_url,
                                 tweet_url,
                                 tweet["text"],
-                                tweet["created_at"]
+                                tweet["created_at"],
+                                user['name']
                             )
                         )
 
@@ -101,7 +100,8 @@ def get_images(users):
                                 image_url,
                                 tweet_url,
                                 tweet["text"],
-                                tweet["created_at"]
+                                tweet["created_at"],
+                                user['name']
                             )
                         )
             

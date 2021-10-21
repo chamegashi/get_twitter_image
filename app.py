@@ -20,7 +20,6 @@ def search_keyword():
 
 
 		res = get_images(users)
-		print(res)
 
 		return jsonify({"data" : res, "status": "ok"})
 	else:
