@@ -7,4 +7,5 @@ class TwitterImage:
     text: str = ""
     created: str = ""
     user: str = ""
+    profile_image_url: str = ""
     

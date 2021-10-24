@@ -82,7 +82,8 @@ def get_images(users):
                                 tweet_url,
                                 tweet["text"],
                                 tweet["created_at"],
-                                user['name']
+                                user['name'],
+                                user['profile_image_url']
                             )
                         )
 
@@ -107,7 +108,8 @@ def get_images(users):
                                 tweet_url,
                                 tweet["text"],
                                 tweet["created_at"],
-                                user['name']
+                                user['name'],
+                                user['profile_image_url']
                             )
                         )
 
@@ -118,7 +120,7 @@ def get_images(users):
 
 
 if __name__ == '__main__':
-    user = get_user_from_user_name("何かお気に入りのユーザ入れる")
+    user = get_user_from_user_name("papaiaMK2")
     res = get_images([user])
     print(res)
 
