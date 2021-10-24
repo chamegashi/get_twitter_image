@@ -111,7 +111,7 @@ def get_images(users):
 
 
 if __name__ == '__main__':
-    user = get_user_from_user_name("papaiaMK2")
+    user = get_user_from_user_name("何かお気に入りのユーザ入れる")
     res = get_images([user])
     print(res)
 
