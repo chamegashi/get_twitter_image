@@ -49,7 +49,6 @@ def get_images(users):
     for user in users:
         url = url_base + user['id'] + "&count=" + str(nnx)
         res = twitter.get(url)
-        check_image = []
 
         if res.status_code == 200:
             data = json.loads(res.text)
@@ -66,11 +65,11 @@ def get_images(users):
                     for media in media_list:
                         image_url = media['media_url']
 
-                        if image_url in check_image:
+                        if image_url in ret_image_urls:
                             continue
 
                         tweet_url = tweet['entities']['media'][0]['expanded_url'][0:-8]
-                        check_image.append(
+                        ret_image_urls.append(
                             TwitterImage(
                                 image_url,
                                 tweet_url,
@@ -91,11 +90,11 @@ def get_images(users):
                     for media in media_list:
                         image_url = media['media_url']
 
-                        if image_url in check_image:
+                        if image_url in ret_image_urls:
                             continue
 
                         tweet_url = tweet['entities']['media'][0]['expanded_url'][0:-8]
-                        check_image.append(
+                        ret_image_urls.append(
                             TwitterImage(
                                 image_url,
                                 tweet_url,
@@ -104,8 +103,6 @@ def get_images(users):
                                 user['name']
                             )
                         )
-            
-            ret_image_urls.append(check_image)
 
         else:
             print("Failed: %d" % res.status_code)

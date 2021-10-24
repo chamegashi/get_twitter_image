@@ -18,7 +18,6 @@ def search_keyword():
 		for word in keywords:
 			users.append(get_user_from_user_name(word))
 
-
 		res = get_images(users)
 
 		return jsonify({"data" : res, "status": "ok"})
