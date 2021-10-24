@@ -1,13 +1,19 @@
+import os
 import json, config
 # from typing import 
 from requests_oauthlib import OAuth1Session
 
 from TwitterImageFormat import TwitterImage
 
-AK = config.API_KEY
-AS = config.API_SECRET_KEY
-AT = config.ACCESS_TOKEN
-ATS = config.ACCESS_TOKEN_SECRET
+AK = os.environ['API_KEY']
+AS = os.environ['API_SECRET_KEY']
+AT = os.environ['ACCESS_TOKEN']
+ATS = os.environ['ACCESS_TOKEN_SECRET']
+# AK = config.API_KEY
+# AS = config.API_SECRET_KEY
+# AT = config.ACCESS_TOKEN
+# ATS = config.ACCESS_TOKEN_SECRET
+
 twitter = OAuth1Session(AK, AS, AT, ATS) #認証処理
 
 # ---- フォロー取得
