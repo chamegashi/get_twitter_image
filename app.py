@@ -24,6 +24,10 @@ def search_keyword():
 	else:
 		return jsonify({"status": "error", "message": "POST やん..."})
 
+@app.route('/', methods=['GET'])
+def test():
+	return jsonify({"data": "test responce."})
+
 @app.after_request
 def after_request(response):
 	response.headers.add('Access-Control-Allow-Origin', '*')
