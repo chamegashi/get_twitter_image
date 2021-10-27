@@ -7,18 +7,17 @@ app = Flask(__name__)
 @app.route('/api/getData', methods=['GET'])
 def search_keyword():
 	if request.method == 'GET':
-		keywords = []
-		keyword = request.args.get('users')
-
-		if not keyword:
+		users = request.args.get('users')
+		if not users:
 			return jsonify({"status": "error", "message": "なんか文字入れて"})
 		
-		users = []
-		keywords.append(keyword)
-		for word in keywords:
-			users.append(get_user_from_user_name(word))
+		users = users.split(",")
+		tw_users = []
 
-		res = get_images(users)
+		for user in users:
+			tw_users.append(get_user_from_user_name(user))
+
+		res = get_images(tw_users)
 
 		return jsonify({"data" : res, "status": "ok"})
 	else:
