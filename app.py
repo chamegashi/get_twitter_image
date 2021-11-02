@@ -15,7 +15,8 @@ def search_keyword():
 		tw_users = []
 
 		for user in users:
-			tw_users.append(get_user_from_user_name(user))
+			if(user != ""):
+				tw_users.append(get_user_from_user_name(user))
 
 		res = get_images(tw_users)
 
