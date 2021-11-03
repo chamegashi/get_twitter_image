@@ -48,7 +48,7 @@ def get_user_from_user_name(user_name):
     }
 
 # ---- image 取得
-def get_images(users):
+def get_images(users, is_show_RT):
     nnx = 30
     url_base = "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id="
     ret_image_urls = []
@@ -63,7 +63,7 @@ def get_images(users):
                 text = tweet['text']
 
                 # RT 判定
-                if(text[0:2] == "RT"):
+                if(text[0:2] == "RT" and is_show_RT):
                     if not ('extended_entities' in tweet):
                         continue
 
