@@ -63,7 +63,9 @@ def get_images(users, is_show_RT):
                 text = tweet['text']
 
                 # RT 判定
-                if(text[0:2] == "RT" and is_show_RT):
+                if(text[0:2] == "RT"):
+                    if (not is_show_RT):
+                        continue
                     if not ('extended_entities' in tweet):
                         continue
 
@@ -89,7 +91,7 @@ def get_images(users, is_show_RT):
 
                     continue
 
-                if("https://t.co" in text):
+                elif ("https://t.co" in text):
                     if not ('extended_entities' in tweet):
                         continue
 

@@ -14,7 +14,7 @@ def search_keyword():
 		if not users:
 			return jsonify({"status": "error", "message": "なんか文字入れて"})
 
-		if not is_show_RT:
+		if not is_show_RT or is_show_RT == "false":
 			is_show_RT = False
 		
 		users = users.split(",")
